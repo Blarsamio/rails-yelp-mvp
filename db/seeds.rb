@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+5.times do
+  Restaurant.create!(
+    name: Faker::Restaurant.name,
+    address: Faker::Address.street_address,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    category: %w[chinese italian japanese french belgian].sample
+  )
+end
+puts "5 restaurants created"
+
+10.times do
+  Review.create!(
+    rating: rand(0..5),
+    content: Faker::Restaurant.review,
+    restaurant: Restaurant.all.sample
+  )
+end
